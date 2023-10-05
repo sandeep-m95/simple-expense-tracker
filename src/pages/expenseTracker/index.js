@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 const ExpenseTracker = () => {
   const { addTransaction } = useAddTransaction();
   const { transactions, transactionTotals } = useGetTransaction();
+
   const { name, profilePic } = useGetUserInfo();
 
   const navigate = useNavigate();

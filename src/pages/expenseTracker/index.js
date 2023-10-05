@@ -5,13 +5,13 @@ import { useGetTransaction } from "../../hooks/useGetTransactions";
 import { useGetUserInfo } from "../../hooks/useGetUserInfo";
 import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebase-config";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const ExpenseTracker = () => {
   const { addTransaction } = useAddTransaction();
   const { transactions, transactionTotals } = useGetTransaction();
 
-  const { name, profilePic } = useGetUserInfo();
+  const { name, profilePic, isAuth } = useGetUserInfo();
 
   const navigate = useNavigate();
 
@@ -53,6 +53,10 @@ const ExpenseTracker = () => {
       console.log(err);
     }
   };
+
+  if (!isAuth) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <>
